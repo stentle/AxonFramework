@@ -52,13 +52,13 @@ public class MongoFactory {
     public Mongo createMongo() {
         Mongo mongo;
         if (mongoAddresses.isEmpty()) {
-            try {
-                mongo = new Mongo(new ServerAddress(), mongoOptions);
-            } catch (UnknownHostException e) {
-                throw new IllegalStateException(String.format(
-                        "No addresses were provided, but could not find IP for default host: %s",
-                        ServerAddress.defaultHost()), e);
-            }
+            // try {
+            mongo = new Mongo(new ServerAddress(), mongoOptions);
+            // } catch (UnknownHostException e) {
+            // throw new IllegalStateException(String.format(
+            // "No addresses were provided, but could not find IP for default host: %s",
+            // ServerAddress.defaultHost()), e);
+            // }
         } else {
             mongo = new Mongo(mongoAddresses, mongoOptions);
         }

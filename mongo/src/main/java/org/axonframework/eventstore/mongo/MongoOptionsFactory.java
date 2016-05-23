@@ -58,7 +58,7 @@ public class MongoOptionsFactory {
         options.connectTimeout = getConnectionTimeout();
         options.maxWaitTime = getMaxWaitTime();
         options.threadsAllowedToBlockForConnectionMultiplier = getThreadsAllowedToBlockForConnectionMultiplier();
-        options.autoConnectRetry = isAutoConnectRetry();
+        // options.autoConnectRetry = isAutoConnectRetry();
         options.socketTimeout = getSocketTimeOut();
         if (logger.isDebugEnabled()) {
             logger.debug("Mongo Options");
@@ -66,7 +66,7 @@ public class MongoOptionsFactory {
             logger.debug("Connection timeout : {}", options.connectTimeout);
             logger.debug("Max wait timeout : {}", options.maxWaitTime);
             logger.debug("Threads allowed to block : {}", options.threadsAllowedToBlockForConnectionMultiplier);
-            logger.debug("Autoconnect retry : {}", options.autoConnectRetry);
+            // logger.debug("Autoconnect retry : {}", options.autoConnectRetry);
             logger.debug("Socket timeout : {}", options.socketTimeout);
         }
         return options;
@@ -77,9 +77,9 @@ public class MongoOptionsFactory {
      *
      * @return true if autoConnectRetry is true
      */
-    public boolean isAutoConnectRetry() {
-        return (autoConnectRetry) || defaults.autoConnectRetry;
-    }
+    // public boolean isAutoConnectRetry() {
+    // return (autoConnectRetry) || defaults.autoConnectRetry;
+    // }
 
     /**
      * Setter for AutoConnectRetry.

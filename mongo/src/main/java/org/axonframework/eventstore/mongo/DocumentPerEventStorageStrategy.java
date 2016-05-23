@@ -82,16 +82,19 @@ public class DocumentPerEventStorageStrategy implements StorageStrategy {
 
     @Override
     public void ensureIndexes(DBCollection eventsCollection, DBCollection snapshotsCollection) {
-        eventsCollection.ensureIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        // eventsCollection.ensureIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        eventsCollection.createIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
                                              .append(EventEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                      "uniqueAggregateIndex",
                                      true);
 
-        eventsCollection.ensureIndex(new BasicDBObject(EventEntry.TIME_STAMP_PROPERTY, 1)
+        // eventsCollection.ensureIndex(new BasicDBObject(EventEntry.TIME_STAMP_PROPERTY, 1)
+        eventsCollection.createIndex(new BasicDBObject(EventEntry.TIME_STAMP_PROPERTY, 1)
                                              .append(EventEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                      "orderedEventStreamIndex",
                                      false);
-        snapshotsCollection.ensureIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        // snapshotsCollection.ensureIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        snapshotsCollection.createIndex(new BasicDBObject(EventEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
                                                 .append(EventEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                         "uniqueAggregateIndex",
                                         true);

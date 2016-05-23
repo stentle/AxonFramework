@@ -98,11 +98,12 @@ public abstract class AuthenticatingMongoTemplate {
      * @see DB#authenticate(String, char[])
      */
     protected DB database() {
-        if (!authenticationDatabase.isAuthenticated()
-                && (userName != null || password != null)
-                && !authenticationDatabase.authenticate(userName, password)) {
-            logger.warn("Failed to authenticate user '{}' against database '{}'. Incorrect credentials.", userName, authenticationDatabase.getName());
-        }
+        // if (!authenticationDatabase.isAuthenticated()
+        // && (userName != null || password != null)
+        // && !authenticationDatabase.authenticate(userName, password)) {
+        // logger.warn("Failed to authenticate user '{}' against database '{}'. Incorrect credentials.", userName,
+        // authenticationDatabase.getName());
+        // }
         return database;
     }
 }

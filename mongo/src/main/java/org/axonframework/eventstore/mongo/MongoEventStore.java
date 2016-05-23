@@ -19,6 +19,7 @@ package org.axonframework.eventstore.mongo;
 import com.mongodb.Bytes;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.DuplicateKeyException;
 import com.mongodb.MongoException;
 import org.axonframework.eventsourcing.DomainEventMessage;
 import org.axonframework.eventsourcing.DomainEventStream;
@@ -130,7 +131,8 @@ public class MongoEventStore implements SnapshotEventStore, EventStoreManagement
 
         try {
             mongoTemplate.domainEventCollection().insert(storageStrategy.createDocuments(eventSerializer, events));
-        } catch (MongoException.DuplicateKey e) {
+        // } catch (MongoException.DuplicateKey e) {
+        } catch (DuplicateKeyException e) {
             throw new ConcurrencyException("Trying to insert an Event for an aggregate with a sequence "
                                                    + "number that is already present in the Event Store", e);
         }
@@ -184,7 +186,8 @@ public class MongoEventStore implements SnapshotEventStore, EventStoreManagement
                                                                   Collections.singletonList(snapshotEvent))[0];
         try {
             mongoTemplate.snapshotEventCollection().insert(dbObject);
-        } catch (MongoException.DuplicateKey e) {
+        // } catch (MongoException.DuplicateKey e) {
+        } catch (DuplicateKeyException e) {
             throw new ConcurrencyException("Trying to insert a SnapshotEvent with aggregate identifier and sequence "
                                                    + "number that is already present in the Event Store", e);
         }

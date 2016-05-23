@@ -99,16 +99,19 @@ public class DocumentPerCommitStorageStrategy implements StorageStrategy {
 
     @Override
     public void ensureIndexes(DBCollection eventsCollection, DBCollection snapshotsCollection) {
-        eventsCollection.ensureIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        // eventsCollection.ensureIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        eventsCollection.createIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
                                              .append(CommitEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                      "uniqueAggregateIndex",
                                      true);
 
-        eventsCollection.ensureIndex(new BasicDBObject(CommitEntry.TIME_STAMP_PROPERTY, 1)
+        // eventsCollection.ensureIndex(new BasicDBObject(CommitEntry.TIME_STAMP_PROPERTY, 1)
+        eventsCollection.createIndex(new BasicDBObject(CommitEntry.TIME_STAMP_PROPERTY, 1)
                                              .append(CommitEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                      "orderedEventStreamIndex",
                                      false);
-        snapshotsCollection.ensureIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        // snapshotsCollection.ensureIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
+        snapshotsCollection.createIndex(new BasicDBObject(CommitEntry.AGGREGATE_IDENTIFIER_PROPERTY, 1)
                                                 .append(CommitEntry.SEQUENCE_NUMBER_PROPERTY, 1),
                                         "uniqueAggregateIndex",
                                         true);
